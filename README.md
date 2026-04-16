@@ -177,35 +177,42 @@ top -p $(pgrep -d',' cpu_hog io_pulse)
 Each screenshot is annotated with a brief caption.
 
 ### 1. Multi‑container supervision (Task 1)
-![Two containers running](screenshots/screenshot1.png)  
+<img width="1504" height="223" alt="Screenshot 2026-04-09 233530" src="https://github.com/user-attachments/assets/3611e0c3-4344-4b23-8cc0-bab2eff2a926" />
 *Caption: `sudo ./engine ps` shows containers `alpha` and `beta` both in `running` state under the same supervisor.*
 
 ### 2. Metadata tracking (Tasks 1 & 2)
-![Metadata output](screenshots/screenshot2.png)  
+<img width="1504" height="223" alt="Screenshot 2026-04-09 233530" src="https://github.com/user-attachments/assets/3e38ad18-625b-45ce-b0b9-2d4a445adb1c" />
+
 *Caption: `ps` command displays container ID, PID, state, soft limit (MiB), and hard limit (MiB).*
 
 ### 3. Bounded‑buffer logging (Task 3)
-![Log file content](screenshots/screenshot3.png)  
+<img width="812" height="50" alt="Screenshot 2026-04-09 234244" src="https://github.com/user-attachments/assets/b2355cc5-ed2c-4ddd-98e1-b2b7d364e66d" />
+
 *Caption: `cat ~/OS/boilerplate/logs/logger.log` shows the message “Hello from container” written through the logging pipeline.*
 
 ### 4. CLI and IPC (Task 2)
-![CLI command and supervisor response](screenshots/screenshot4.png)  
+<img width="1102" height="160" alt="Screenshot 2026-04-09 234409" src="https://github.com/user-attachments/assets/bef4654c-af5f-4f83-ad97-6418f9fdb4ef" />
+
 *Caption: Issuing `engine start demo ...` returns “Container demo started with PID 7456”, and `engine ps` shows the container, proving the UNIX socket communication.*
 
 ### 5. Soft‑limit warning (Task 4)
-![dmesg soft limit](screenshots/screenshot5.png)  
+<img width="1361" height="118" alt="Screenshot 2026-04-09 234522" src="https://github.com/user-attachments/assets/98a27cae-d70d-4744-83ff-e2fad300b226" />
+ 
 *Caption: `dmesg | grep "SOFT LIMIT"` shows a warning when container `mentest` exceeded its 20 MiB soft limit.*
 
 ### 6. Hard‑limit enforcement (Task 4)
-![dmesg hard limit and ps killed](screenshots/screenshot6.png)  
+<img width="1107" height="200" alt="Screenshot 2026-04-09 234629" src="https://github.com/user-attachments/assets/7ff07b7d-b1b8-4772-bd38-7fee53f4f216" />
+  
 *Caption: `dmesg` shows a hard limit kill (RSS > 40 MiB), and `engine ps` marks the container state as `killed`.*
 
 ### 7. Scheduling experiment (Task 5)
-![top showing CPU shares](screenshots/screenshot7.png)  
+<img width="1622" height="343" alt="Screenshot 2026-04-09 234949" src="https://github.com/user-attachments/assets/ce214cf1-77f0-43de-894e-dc95e9542e19" />
+ 
 *Caption: `cpu_low` (nice 19) and `io_high` (nice -20) run concurrently; `top` shows the I/O‑bound task receiving ~60% CPU despite being less compute‑intensive.*
 
 ### 8. Clean teardown (Task 6)
-![No zombies and module unloaded](screenshots/screenshot8.png)  
+<img width="971" height="177" alt="Screenshot 2026-04-09 235200" src="https://github.com/user-attachments/assets/c3bcecd0-7322-47e3-9247-5f7c70367d7e" />
+ 
 *Caption: After stopping the supervisor, `ps aux | grep defunct` shows no zombies, and `sudo rmmod monitor` succeeds with no errors.*
 
 ---
